@@ -27,7 +27,7 @@ export const AddTodolist = ({setTodolists, setTasks}: PropsType) => {
     }
 
     return <div>
-        <input placeholder={"123"}
+        <input placeholder={"добавление тудулиста"}
                onChange={(event) =>
                    setValue(event.target.value)}
                value={value}

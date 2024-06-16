@@ -32,7 +32,8 @@ export function AddTask({setTask, todolistid}: PropsType) {
     }
     return <div>
 
-        <input className={error ? css.Error : undefined}
+        <input placeholder={"добавить задачу"}
+            className={error ? css.Error : undefined}
                type={"text"}
                value={value}
                onKeyUp={(event) => {
