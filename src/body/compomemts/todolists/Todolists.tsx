@@ -1,10 +1,9 @@
-import {Todolist} from "./components";
-
 import {v4 as uuidv4} from "uuid"
-import {Task} from "./components/todolist/Todolist.tsx";
+import {Task, Todolist} from "./components/todolist/Todolist.tsx";
 import {useState} from "react";
+import {AddTodolist} from "./components";
 
-interface TodolistType {
+export interface TodolistType {
     id: string,
     title: string
 }
@@ -37,11 +36,15 @@ const initialTask: TaskType = {
 }
 
 export type FilterStateType = "all" | "active" | "closed"
+
+
 export const Todolists = () => {
     const [todolists, setTodolists] = useState<TodolistType[]>(initialTodolists)
     const [tasks, setTasks] = useState<TaskType>(initialTask)
 
+
     return <div>
+        <AddTodolist setTasks={setTasks} setTodolists={setTodolists}/>
         {todolists.map((todolist) => {
             return (
                 <Todolist key={todolist.id} todolistid={todolist.id}
