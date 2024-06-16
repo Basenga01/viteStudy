@@ -17,8 +17,8 @@ const todolistid1 = uuidv4()
 const todolistid2 = uuidv4()
 
 const initialTodolists: TodolistType[] = [
-    {id: todolistid1, title: "123"},
-    {id: todolistid2, title: "321"}
+    {id: todolistid1, title: "Тудулист1"},
+    {id: todolistid2, title: "Тудулист2"}
 ]
 
 const initialTask: TaskType = {
@@ -47,10 +47,12 @@ export const Todolists = () => {
         <AddTodolist setTasks={setTasks} setTodolists={setTodolists}/>
         {todolists.map((todolist) => {
             return (
-                <Todolist key={todolist.id} todolistid={todolist.id}
+                <Todolist key={todolist.id}
+                          todolistid={todolist.id}
                           title={todolist.title}
                           tasks={tasks[todolist.id]}
                           setTask={setTasks}
+                          setTodolists={setTodolists}
                 />
             )
         })}
