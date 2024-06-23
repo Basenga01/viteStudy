@@ -1,6 +1,7 @@
 import {v4 as uuidv4} from "uuid";
 import {Dispatch, SetStateAction, useState} from "react";
 import {TaskType, TodolistType} from "../../Todolists.tsx";
+import {BasedButton} from "../../../../../shered/ui/basedButton/basedButton.tsx";
 
 
 interface PropsType {
@@ -32,6 +33,6 @@ export const AddTodolist = ({setTodolists, setTasks}: PropsType) => {
                    setValue(event.target.value)}
                value={value}
         />
-        <button onClick={onClickAddTodolist}>список задач. добавить</button>
+        <BasedButton variant={"secondary"} onClick={onClickAddTodolist}>список задач. добавить</BasedButton>
     </div>
 }

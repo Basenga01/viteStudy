@@ -1,0 +1,15 @@
+.button{
+
+}
+.primary{
+    background: var(--primary-color);
+}
+.secondary{
+    background: var(--secondary-color);
+}
+.danger{
+    background: var(--danger-color);
+}
+.outline{
+
+}

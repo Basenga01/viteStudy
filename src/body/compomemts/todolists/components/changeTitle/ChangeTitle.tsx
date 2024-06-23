@@ -1,4 +1,6 @@
 import {useState} from "react";
+import {BasedButton} from "../../../../../shered";
+import css from './changeTitle.module.css'
 
 interface PropsType {
     title: string
@@ -28,24 +30,24 @@ export function ChangeTitle({title, saveTitle}: PropsType) {
         saveTitle(value, onCloseInput)
     }
 
-    return <div>
+    return <div className={css.container}>
         {titleIsVisible ? <div>
-                {title}
-                <button onClick={() => {
+                <span className={css.title}></span>
+                <BasedButton onClick={() => {
                     setTitleIsVisible(false)
                 }}>change Title
-                </button>
+                </BasedButton>
             </div>
             : <div>
                 <input value={value} onChange={(event) => {
                     setValue(event.target.value)
                 }}/>
-                <button onClick={() => {
+                <BasedButton onClick={() => {
                     setTitleIsVisible(true)
                     setValue(title)
                 }}>Cancel
-                </button>
-                <button onClick={onSave}>Save</button>
+                </BasedButton>
+                <BasedButton onClick={onSave}>Save</BasedButton>
             </div>}
 
     </div>

@@ -3,6 +3,7 @@ import {Task} from "../todolist/Todolist.tsx";
 import {ChangeEvent, Dispatch, SetStateAction} from "react";
 import {TaskType} from "../../Todolists.tsx";
 import {ChangeTitle} from "../changeTitle/ChangeTitle.tsx";
+import {BasedButton} from "../../../../../shered";
 
 interface PropsType {
     tasks: Task[]
@@ -51,7 +52,7 @@ export function TaskList({filtredTask, setTask, todolistid}: PropsType) {
             {task.task}
             <ChangeTitle title={task.task}
                          saveTitle={(value, callback)=>onSaveTitleTask(task.id, value, callback)}/>
-            <button onClick={() => deleteTask(task.id)}>Удаление</button>
+            <BasedButton onClick={() => deleteTask(task.id)}>Удаление</BasedButton>
         </li>)}
     </ul>
 }

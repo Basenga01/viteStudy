@@ -1,0 +1,1 @@
+export {BasedButton} from "./basedButton/basedButton.tsx"

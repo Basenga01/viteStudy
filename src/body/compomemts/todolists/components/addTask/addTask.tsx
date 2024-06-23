@@ -3,6 +3,7 @@ import {Task} from "../todolist/Todolist.tsx";
 import {ChangeEvent, Dispatch, SetStateAction, useState} from "react";
 import css from "./addTask.module.css"
 import {TaskType} from "../../Todolists.tsx";
+import {BasedButton} from "../../../../../shered";
 
 interface PropsType {
     setTask: Dispatch<SetStateAction<TaskType>>
@@ -45,6 +46,6 @@ export function AddTask({setTask, todolistid}: PropsType) {
                }
                }
                onChange={onChange}/>
-        <button onClick={addTask}>add task</button>
+        <BasedButton onClick={addTask}>add task</BasedButton>
     </div>
 }

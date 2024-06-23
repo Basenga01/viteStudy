@@ -2,6 +2,7 @@ import {v4 as uuidv4} from "uuid"
 import {Task, Todolist} from "./components/todolist/Todolist.tsx";
 import {useState} from "react";
 import {AddTodolist} from "./components";
+import css from "./Todolists.module.css"
 
 export interface TodolistType {
     id: string,
@@ -43,7 +44,7 @@ export const Todolists = () => {
     const [tasks, setTasks] = useState<TaskType>(initialTask)
 
 
-    return <div>
+    return <div className={css.container}>
         <AddTodolist setTasks={setTasks} setTodolists={setTodolists}/>
         {todolists.map((todolist) => {
             return (
