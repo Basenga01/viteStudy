@@ -26,6 +26,15 @@ export interface Task {
 
 export const Todolist = ({title, tasks, setTask, todolistid, setTodolists}: Props) => {
 
+    function onSavetitleTdl(value:string, onSuccsesCallback: ()=> void) {
+        setTodolists(prevState => {
+            const newArr = prevState.map((element) => element.id === todolistid ? {...element, title: value} : element)
+
+            return newArr
+        })
+        onSuccsesCallback()
+    }
+
     const [filterState, setFilterState] = useState<FilterStateType>("all")
     let filterTask: Task[] = []
     if (filterState === "all") {
@@ -38,8 +47,8 @@ export const Todolist = ({title, tasks, setTask, todolistid, setTodolists}: Prop
 
     return <div>
         <ChangeTitle title={title}
-                     setTodolists={setTodolists}
-                     todolistid={todolistid}/>
+                     saveTitle={onSavetitleTdl}
+                     />
 
         <AddTask setTask={setTask}
                  todolistid={todolistid}/>

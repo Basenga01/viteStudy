@@ -1,25 +1,31 @@
-import {Dispatch, SetStateAction, useState} from "react";
-import {TodolistType} from "../../Todolists.tsx";
+import {useState} from "react";
 
 interface PropsType {
     title: string
-    todolistid: string
-    setTodolists: Dispatch<SetStateAction<TodolistType[]>>
+    saveTitle: (value: string, callback: () => void) => void
 }
 
-export function ChangeTitle({title, todolistid, setTodolists}: PropsType) {
+export function ChangeTitle({title, saveTitle}: PropsType) {
 
     const [titleIsVisible, setTitleIsVisible] = useState<boolean>(true)
     const [value, setValue] = useState<string>(title)
 
 
-    function onSavetitle() {
-        setTodolists(prevState => {
-            const newArr = prevState.map((element) => element.id === todolistid ? {...element, title: value} : element)
+    // function onSavetitle() {
+    //     setTodolists(prevState => {
+    //         const newArr = prevState.map((element) => element.id === todolistid ? {...element, title: value} : element)
+    //
+    //         return newArr
+    //     })
+    //     setTitleIsVisible(true)
+    // }
 
-            return newArr
-        })
+    function onCloseInput() {
         setTitleIsVisible(true)
+    }
+
+    function onSave() {
+        saveTitle(value, onCloseInput)
     }
 
     return <div>
@@ -39,7 +45,7 @@ export function ChangeTitle({title, todolistid, setTodolists}: PropsType) {
                     setValue(title)
                 }}>Cancel
                 </button>
-                <button onClick={onSavetitle}>Save</button>
+                <button onClick={onSave}>Save</button>
             </div>}
 
     </div>
