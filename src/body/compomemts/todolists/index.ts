@@ -1,1 +1,1 @@
-export {Todolists} from "./Todolists.tsx"
+export { Todolists } from './Todolists.tsx'

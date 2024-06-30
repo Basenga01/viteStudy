@@ -1,24 +1,27 @@
-import {FilterStateType} from "../../Todolists.tsx";
+import { FilterStateType } from '../../Todolists.tsx'
+import { BasedButton } from '../../../../../shered'
 
 interface Props {
-    setFilterState: (filterState: FilterStateType) => void
-    filterState: FilterStateType
+  setFilterState: (filterState: FilterStateType) => void
+  filterState: FilterStateType
 }
 
-const setColor = (filterState: FilterStateType, color: string) => {
-    return {background: filterState === filterState ? color : ""}
+const listButton: FilterStateType[] = ['all', 'active', 'closed']
+const setColor = (filterState: FilterStateType, state: FilterStateType) => {
+  return filterState === state
 }
 export const FilterBlock = (props: Props) => {
-    const {setFilterState, filterState} = props
-    return <div>
-        <button style={setColor(filterState, "blue")}
-                onClick={() => setFilterState("all")}>все
-        </button>
-        <button style={setColor(filterState, "orange")}
-                onClick={() => setFilterState("active")}>актив
-        </button>
-        <button style={setColor(filterState, "green")}
-                onClick={() => setFilterState("closed")}>закрыто
-        </button>
+  const { setFilterState, filterState } = props
+  return (
+    <div>
+      {listButton.map((btn) => (
+        <BasedButton
+          variant={setColor(filterState, btn) ? 'primary' : 'secondary'}
+          onClick={() => setFilterState(btn)}
+        >
+          {btn}
+        </BasedButton>
+      ))}
     </div>
+  )
 }

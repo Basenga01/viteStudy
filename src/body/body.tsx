@@ -1,8 +1,9 @@
-import {Todolists} from "./compomemts";
+import { Todolists } from './compomemts'
 
-export const Body = () =>{
-    return <div>
-
-        <Todolists/>
+export const Body = () => {
+  return (
+    <div>
+      <Todolists />
     </div>
+  )
 }

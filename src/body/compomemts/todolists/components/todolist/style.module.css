@@ -1,12 +1,14 @@
-.isDone{
-    position: relative;
+.isDone {
+  display: flex;
+  flex-direction: row;
 }
-.isDone:after{
-    background-color: red;
-    content: "";
-    position: absolute;
-    width: 100%;
-    height: 2px;
-    left: 0;
-    top: 40%
+.isDone:after {
+
+}
+.container{
+  display: flex;
+  flex-direction: row;
+}
+.delete{
+  display: flex;
 }

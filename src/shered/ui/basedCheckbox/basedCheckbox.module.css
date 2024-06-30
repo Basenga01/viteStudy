@@ -1,0 +1,37 @@
+.container{
+    position: relative;
+    padding-left: 12px;
+    cursor: pointer;
+}
+.checkBox{
+    opacity: 0;
+    height: 0;
+    width: 0;
+}
+.checkMark{
+    left: 0;
+    position: absolute;
+    width: 16px;
+    height: 16px;
+    background: blue;
+    border-radius: 2px;
+}
+.checkBox:checked~ .checkMark{
+    background: #04203b;
+}
+
+.checkMark:after{
+    content: "";
+    display: none;
+    position: absolute;
+    left: 4px;
+    top: 4px;
+    width: 4px;
+    height: 4px;
+    border: solid red;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+}
+.checkBox:checked ~ .checkMark:after{
+    display: block;
+}
