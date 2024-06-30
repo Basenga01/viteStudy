@@ -1,18 +1,19 @@
-body{
-    background-color: #b2df54;
-    display: grid;
-    grid-auto-rows: 5px 500px;
-    grid-template-areas: "header"
-                         "body";
+body {
+  background-color: #b2df54;
+  display: grid;
+  grid-auto-rows: 5px 500px;
+  grid-template-areas:
+    'header'
+    'body';
 }
-.header{
-    grid-area: header;
-    background-color: red;
+.header {
+  grid-area: header;
+  background-color: red;
 }
-.body{
-    grid-area: body;
-    background-color: grey;
+.body {
+  grid-area: body;
+  background-color: grey;
 }
-.border{
-    border: 1px solid violet;
+.border {
+  border: 1px solid violet;
 }

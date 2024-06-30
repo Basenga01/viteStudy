@@ -1,15 +1,16 @@
-.button{
-
+.button {
 }
-.primary{
-    background: var(--primary-color);
+.primary {
+  background: var(--primary-color);
 }
-.secondary{
-    background: var(--secondary-color);
+.secondary {
+  background: var(--secondary-color);
 }
-.danger{
-    background: var(--danger-color);
+.danger {
+  background: var(--danger-color);
 }
-.outline{
-
+.outline {
+}
+.button:disabled{
+  background: var(--secondary-color);
 }
