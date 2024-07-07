@@ -4,6 +4,7 @@ import { TaskList } from '../taskList/taskList.tsx'
 import { AddTask } from '../addTask/addTask.tsx'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { ChangeTitle } from '../changeTitle/ChangeTitle.tsx'
+import { DeleteTdl } from '../deleteTdl/deleteTdl.tsx'
 
 interface Props {
   title: string
@@ -46,6 +47,10 @@ export const Todolist = ({ title, tasks, setTask, todolistid, setTodolists }: Pr
     <div>
       {title}
       <ChangeTitle title={title} saveTitle={onSavetitleTdl} />
+
+      <DeleteTdl setTask={setTask} todolistid={todolistid} setTodolists={setTodolists}>
+        Delete tdl
+      </DeleteTdl>
 
       <AddTask setTask={setTask} todolistid={todolistid} />
 
