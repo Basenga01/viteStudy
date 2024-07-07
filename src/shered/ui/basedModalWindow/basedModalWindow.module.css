@@ -1,0 +1,38 @@
+.overlay {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(128, 128, 128, 0.25);
+    z-index: 9999;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    position: relative;
+    min-width: 300px;
+    min-height: 300px;
+    background-color: rgba(47, 192, 225, 0.25);
+    border-radius: 16px;
+    padding: 16px;
+}
+
+.close {
+    position: absolute;
+    cursor: pointer;
+    right: 16px;
+    top: 16px;
+}
+
+.containerBtn {
+    position: relative;
+    display: flex;
+    justify-content: flex-end;
+    gap: 8px;
+}
