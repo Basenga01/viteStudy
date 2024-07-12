@@ -3,8 +3,8 @@ import { Task } from '../todolist/Todolist.tsx'
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 import { TaskType } from '../../Todolists.tsx'
 import { ChangeTitle } from '../changeTitle/ChangeTitle.tsx'
-import { BasedCheckbox } from "../../../../../shered";
-import { DeleteTask } from "./components";
+import { BasedCheckbox } from '@/shered'
+import { DeleteTask } from './components'
 
 interface PropsType {
   tasks: Task[]
@@ -43,6 +43,7 @@ export function TaskList({ filtredTask, setTask, todolistid }: PropsType) {
       return { ...prevState, ...resObj }
     })
   }
+
   return (
     <ul>
       {/*<input type={"checkbox"} checked={tasks[0].isDone}/>{tasks[0].task}*/}
@@ -50,19 +51,18 @@ export function TaskList({ filtredTask, setTask, todolistid }: PropsType) {
       {filtredTask.map((task) => (
         <li key={task.id} className={task.isDone ? style.isDone : undefined}>
           <div className={style.container}>
-          <BasedCheckbox
-            checked={task.isDone}
-            onChange={(event) => checkboxCheck(event, task.id)}
-          />
-          {task.task}
-          <ChangeTitle
-            disabled={task.isDone}
-            title={task.task}
-            saveTitle={(value, callback) => onSaveTitleTask(task.id, value, callback)}
-          />
-          <DeleteTask disabled={task.isDone} onClick={() => deleteTask(task.id)}></DeleteTask>
+            <BasedCheckbox
+              checked={task.isDone}
+              onChange={(event) => checkboxCheck(event, task.id)}
+            />
+            {task.task}
+            <ChangeTitle
+              disabled={task.isDone}
+              title={task.task}
+              saveTitle={(value, callback) => onSaveTitleTask(task.id, value, callback)}
+            />
+            <DeleteTask disabled={task.isDone} onClick={() => deleteTask(task.id)}></DeleteTask>
           </div>
-
         </li>
       ))}
     </ul>
