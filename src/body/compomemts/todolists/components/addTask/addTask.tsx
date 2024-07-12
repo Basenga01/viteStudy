@@ -3,7 +3,7 @@ import { Task } from '../todolist/Todolist.tsx'
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import css from './addTask.module.css'
 import { TaskType } from '../../Todolists.tsx'
-import { BasedButton, BasedInput } from '../../../../../shered'
+import { BasedButton, BasedInput } from "@/shered"
 
 interface PropsType {
   setTask: Dispatch<SetStateAction<TaskType>>

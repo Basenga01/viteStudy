@@ -1,4 +1,4 @@
-import { BasedButton, BasedModalWindow, useModal } from "../../../../../../../shered";
+import { BasedButton, BasedModalWindow, useModal } from "@/shered";
 
 interface PropsType {
   disabled: boolean
