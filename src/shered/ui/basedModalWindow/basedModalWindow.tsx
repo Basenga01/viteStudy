@@ -1,7 +1,7 @@
 import { ReactNode } from 'react'
 import styles from './basedModalWindow.module.css'
 import { BasedButton } from '../basedButton/basedButton.tsx'
-import { s } from 'vite/dist/node/types.d-aGj9QkWt'
+import { Portal } from "../hoc/portal/portal.tsx";
 
 interface PropsType {
   children: ReactNode
@@ -9,6 +9,7 @@ interface PropsType {
   titleCancel?: string
   onCancel: () => void
   onOk: () => void
+  isOpen: boolean
 }
 
 export const BasedModalWindow = ({
@@ -17,13 +18,16 @@ export const BasedModalWindow = ({
   titleCancel = 'Cancel',
   onCancel,
   onOk,
+  isOpen
 }: PropsType) => {
-  return (
+  if(!isOpen){
+    return null
+  }
+  return(
+    <Portal>
     <div className={styles.overlay}>
       <div className={styles.container}>
-        <div className={styles.close} onClick={onCancel}>
-          X
-        </div>
+        <div className={styles.close} onClick={onCancel}></div>
         <div className={styles.body}>{children}</div>
         <div className={styles.containerBtn}>
           <BasedButton variant={'primary'} onClick={onOk}>
@@ -35,5 +39,6 @@ export const BasedModalWindow = ({
         </div>
       </div>
     </div>
+    </Portal>
   )
 }

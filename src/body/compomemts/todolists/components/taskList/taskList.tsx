@@ -3,7 +3,8 @@ import { Task } from '../todolist/Todolist.tsx'
 import { ChangeEvent, Dispatch, SetStateAction } from 'react'
 import { TaskType } from '../../Todolists.tsx'
 import { ChangeTitle } from '../changeTitle/ChangeTitle.tsx'
-import { BasedButton, BasedCheckbox } from "../../../../../shered";
+import { BasedCheckbox } from "../../../../../shered";
+import { DeleteTask } from "./components";
 
 interface PropsType {
   tasks: Task[]
@@ -42,8 +43,6 @@ export function TaskList({ filtredTask, setTask, todolistid }: PropsType) {
       return { ...prevState, ...resObj }
     })
   }
-
-  console.log(filtredTask)
   return (
     <ul>
       {/*<input type={"checkbox"} checked={tasks[0].isDone}/>{tasks[0].task}*/}
@@ -61,8 +60,9 @@ export function TaskList({ filtredTask, setTask, todolistid }: PropsType) {
             title={task.task}
             saveTitle={(value, callback) => onSaveTitleTask(task.id, value, callback)}
           />
-          <BasedButton className={style.delete} onClick={() => deleteTask(task.id)} disabled={task.isDone}>Удаление</BasedButton>
+          <DeleteTask disabled={task.isDone} onClick={() => deleteTask(task.id)}></DeleteTask>
           </div>
+
         </li>
       ))}
     </ul>
