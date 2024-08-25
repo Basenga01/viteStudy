@@ -1,29 +1,17 @@
-import { v4 as uuidv4 } from 'uuid'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { TaskType, TodolistType } from '../../Todolists.tsx'
-import { BasedButton } from "@/shered"
-import { BasedInput } from "@/shered"
+import { useContext, useState } from 'react'
+import { BasedButton, BasedInput } from '@/shered'
+import { TodolistContext } from '@/app/provaider'
 
-interface PropsType {
-  setTodolists: Dispatch<SetStateAction<TodolistType[]>>
-  setTasks: Dispatch<SetStateAction<TaskType>>
-}
-
-export const AddTodolist = ({ setTodolists, setTasks }: PropsType) => {
+export const AddTodolist = () => {
   const [value, setValue] = useState<string>('')
-  const onClickAddTodolist = () => {
-    const todolistId = uuidv4()
-    const newTodolist: TodolistType = {
-      id: todolistId,
-      title: value,
-    }
-    const newTask = {
-      [todolistId]: [],
-    }
-    setTodolists((prevState) => [newTodolist, ...prevState])
-    setTasks((prevState) => {
-      return { ...prevState, ...newTask }
-    })
+  const { addTodolist } = useContext(TodolistContext)
+
+  const onClear = () => {
+    setValue('')
+  }
+
+  const onClick = () => {
+    addTodolist(value, onClear)
   }
 
   return (
@@ -33,7 +21,7 @@ export const AddTodolist = ({ setTodolists, setTasks }: PropsType) => {
         onChange={(event) => setValue(event.target.value)}
         value={value}
       />
-      <BasedButton variant={'secondary'} onClick={onClickAddTodolist}>
+      <BasedButton variant={'secondary'} onClick={onClick}>
         список задач. добавить
       </BasedButton>
     </div>

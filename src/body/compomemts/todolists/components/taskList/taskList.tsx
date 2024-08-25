@@ -1,19 +1,22 @@
 import style from '../todolist/style.module.css'
-import { Task } from '../todolist/Todolist.tsx'
-import { ChangeEvent, Dispatch, SetStateAction } from 'react'
-import { TaskType } from '../../Todolists.tsx'
+
+import { ChangeEvent, useContext } from 'react'
+
 import { ChangeTitle } from '../changeTitle/ChangeTitle.tsx'
 import { BasedCheckbox } from '@/shered'
 import { DeleteTask } from './components'
+import { TodolistContext } from '@/app/provaider'
+import { Task } from '@/types'
 
 interface PropsType {
   tasks: Task[]
   filtredTask: Task[]
-  setTask: Dispatch<SetStateAction<TaskType>>
   todolistid: string
 }
 
-export function TaskList({ filtredTask, setTask, todolistid }: PropsType) {
+export function TaskList({ filtredTask, todolistid }: PropsType) {
+  const { setTaskObj: setTask } = useContext(TodolistContext)
+
   function onSaveTitleTask(id: string, value: string, onSuccsesCallback: () => void) {
     setTask((prevState) => {
       const tasks = prevState[todolistid]

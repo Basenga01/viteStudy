@@ -1,16 +1,16 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Task } from '../todolist/Todolist.tsx'
-import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
+import { ChangeEvent, useContext, useState } from 'react'
 import css from './addTask.module.css'
-import { TaskType } from '../../Todolists.tsx'
-import { BasedButton, BasedInput } from "@/shered"
+import { BasedButton, BasedInput } from '@/shered'
+import { Task } from '@/types'
+import { TodolistContext } from '@/app/provaider'
 
 interface PropsType {
-  setTask: Dispatch<SetStateAction<TaskType>>
   todolistid: string
 }
 
-export function AddTask({ setTask, todolistid }: PropsType) {
+export function AddTask({ todolistid }: PropsType) {
+  const { setTaskObj: setTask } = useContext(TodolistContext)
   const [value, setValue] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
   const addTask = () => {
