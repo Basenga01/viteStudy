@@ -1,10 +1,11 @@
-import { FilterStateType, TaskType, TodolistType } from '../../Todolists.tsx'
+import { FilterStateType } from '../../Todolists.tsx'
 import { FilterBlock } from '../filterBlock/filterBlock.tsx'
 import { TaskList } from '../taskList/taskList.tsx'
 import { AddTask } from '../addTask/addTask.tsx'
 import { Dispatch, SetStateAction, useState } from 'react'
 import { ChangeTitle } from '../changeTitle/ChangeTitle.tsx'
 import { DeleteTdl } from '../deleteTdl/deleteTdl.tsx'
+import { Task, TaskType, TodolistType } from '@/types'
 
 interface Props {
   title: string
@@ -12,13 +13,6 @@ interface Props {
   setTask: Dispatch<SetStateAction<TaskType>>
   todolistid: string
   setTodolists: Dispatch<SetStateAction<TodolistType[]>>
-}
-
-export interface Task {
-  id: string
-  task: string
-  isDone: boolean
-  todolistid: string
 }
 
 export const Todolist = ({ title, tasks, setTask, todolistid, setTodolists }: Props) => {
@@ -47,15 +41,10 @@ export const Todolist = ({ title, tasks, setTask, todolistid, setTodolists }: Pr
     <div>
       {title}
       <ChangeTitle title={title} saveTitle={onSavetitleTdl} />
-
-      <DeleteTdl setTask={setTask} todolistid={todolistid} setTodolists={setTodolists}>
-        Delete tdl
-      </DeleteTdl>
-
+      <DeleteTdl setTask={setTask} todolistid={todolistid} setTodolists={setTodolists} />
+      Delete tdl
       <AddTask setTask={setTask} todolistid={todolistid} />
-
       <TaskList tasks={tasks} filtredTask={filterTask} setTask={setTask} todolistid={todolistid} />
-
       <FilterBlock setFilterState={setFilterState} filterState={filterState} />
     </div>
   )

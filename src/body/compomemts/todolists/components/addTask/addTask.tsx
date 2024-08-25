@@ -1,9 +1,8 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Task } from '../todolist/Todolist.tsx'
 import { ChangeEvent, Dispatch, SetStateAction, useState } from 'react'
 import css from './addTask.module.css'
-import { TaskType } from '../../Todolists.tsx'
-import { BasedButton, BasedInput } from "@/shered"
+import { BasedButton, BasedInput } from '@/shered'
+import { Task, TaskType } from '@/types'
 
 interface PropsType {
   setTask: Dispatch<SetStateAction<TaskType>>

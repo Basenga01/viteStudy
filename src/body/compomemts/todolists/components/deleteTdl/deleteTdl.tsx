@@ -1,7 +1,7 @@
-import { TaskType, TodolistType } from '../../Todolists.tsx'
-import { BasedButton, BasedModalWindow } from "@/shered"
-import { Dispatch, SetStateAction} from 'react'
-import { useModal } from "@/shered"
+import { BasedButton, BasedModalWindow } from '@/shered'
+import { Dispatch, SetStateAction } from 'react'
+import { useModal } from '@/shered'
+import { TaskType, TodolistType } from '@/types'
 
 interface PropsType {
   setTask: Dispatch<SetStateAction<TaskType>>
@@ -10,7 +10,7 @@ interface PropsType {
 }
 
 export const DeleteTdl = ({ setTask, setTodolists, todolistid }: PropsType) => {
-  const {isOpen, openModal, closeModal}=useModal()
+  const { isOpen, openModal, closeModal } = useModal()
   const onDeleteTdl = () => {
     setTask((prevState) => {
       const newObjTask: TaskType = { ...prevState }
@@ -27,9 +27,9 @@ export const DeleteTdl = ({ setTask, setTodolists, todolistid }: PropsType) => {
     <>
       <BasedButton onClick={openModal}>Delete tdl</BasedButton>
 
-        <BasedModalWindow isOpen={isOpen} onCancel={closeModal} onOk={onDeleteTdl}>
-          <div>Are you shure about that?</div>
-        </BasedModalWindow>
+      <BasedModalWindow isOpen={isOpen} onCancel={closeModal} onOk={onDeleteTdl}>
+        <div>Are you shure about that?</div>
+      </BasedModalWindow>
     </>
   )
 }
