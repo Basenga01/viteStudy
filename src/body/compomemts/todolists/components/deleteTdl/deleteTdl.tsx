@@ -1,16 +1,15 @@
-import { BasedButton, BasedModalWindow } from '@/shered'
-import { Dispatch, SetStateAction } from 'react'
-import { useModal } from '@/shered'
-import { TaskType, TodolistType } from '@/types'
+import { BasedButton, BasedModalWindow, useModal } from '@/shered'
+import { useContext } from 'react'
+import { TaskType } from '@/types'
+import { TodolistContext } from '@/app/provaider'
 
 interface PropsType {
-  setTask: Dispatch<SetStateAction<TaskType>>
   todolistid: string
-  setTodolists: Dispatch<SetStateAction<TodolistType[]>>
 }
 
-export const DeleteTdl = ({ setTask, setTodolists, todolistid }: PropsType) => {
+export const DeleteTdl = ({ todolistid }: PropsType) => {
   const { isOpen, openModal, closeModal } = useModal()
+  const { setTodolists: setTodolists, setTaskObj: setTask } = useContext(TodolistContext)
   const onDeleteTdl = () => {
     setTask((prevState) => {
       const newObjTask: TaskType = { ...prevState }

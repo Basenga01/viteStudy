@@ -3,23 +3,23 @@ import { TaskType, TodolistType } from '@/types'
 import { initialTask, initialTodolists } from '@/app/provaider/todolistProvaider/data.ts'
 
 interface PropsContext {
-  setTask: Dispatch<SetStateAction<TaskType>>
+  setTaskObj: Dispatch<SetStateAction<TaskType>>
   todoLists: TodolistType[]
-  tasks: TaskType
+  tasksObj: TaskType
   setTodolists: Dispatch<SetStateAction<TodolistType[]>>
 }
-
-export const TodolistContext = createContext<PropsContext>({} as PropsContext)
 
 interface PropsType {
   children: ReactNode
 }
 
+export const TodolistContext = createContext<PropsContext>({} as PropsContext)
+
 export const TodolistProvider = ({ children }: PropsType) => {
   const [todoLists, setTodolists] = useState<TodolistType[]>(initialTodolists)
-  const [tasks, setTask] = useState<TaskType>(initialTask)
+  const [tasksObj, setTaskObj] = useState<TaskType>(initialTask)
   const getData = (): PropsContext => {
-    return { todoLists, setTodolists, tasks, setTask }
+    return { todoLists, setTodolists, tasksObj, setTaskObj }
   }
 
   return <TodolistContext.Provider value={getData()}>{children}</TodolistContext.Provider>

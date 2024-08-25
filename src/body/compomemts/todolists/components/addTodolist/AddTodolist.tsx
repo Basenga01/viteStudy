@@ -1,16 +1,12 @@
 import { v4 as uuidv4 } from 'uuid'
-import { Dispatch, SetStateAction, useState } from 'react'
-import { BasedButton } from "@/shered"
-import { BasedInput } from "@/shered"
-import { TaskType, TodolistType } from "@/types";
+import { useContext, useState } from 'react'
+import { BasedButton, BasedInput } from '@/shered'
+import { TodolistType } from '@/types'
+import { TodolistContext } from '@/app/provaider'
 
-interface PropsType {
-  setTodolists: Dispatch<SetStateAction<TodolistType[]>>
-  setTasks: Dispatch<SetStateAction<TaskType>>
-}
-
-export const AddTodolist = ({ setTodolists, setTasks }: PropsType) => {
+export const AddTodolist = () => {
   const [value, setValue] = useState<string>('')
+  const { setTodolists, setTaskObj: setTask } = useContext(TodolistContext)
   const onClickAddTodolist = () => {
     const todolistId = uuidv4()
     const newTodolist: TodolistType = {
@@ -21,7 +17,7 @@ export const AddTodolist = ({ setTodolists, setTasks }: PropsType) => {
       [todolistId]: [],
     }
     setTodolists((prevState) => [newTodolist, ...prevState])
-    setTasks((prevState) => {
+    setTask((prevState) => {
       return { ...prevState, ...newTask }
     })
   }

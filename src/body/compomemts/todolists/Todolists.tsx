@@ -1,29 +1,18 @@
-import { useState } from 'react'
-import { TaskType, TodolistType } from '@/types'
+import { useContext } from 'react'
 import { AddTodolist, Todolist } from '@/body/compomemts/todolists/components'
 import css from './Todolists.module.css'
-import { initialTask, initialTodolists } from '@/app/provaider/todolistProvaider/data.ts'
+import { TodolistContext } from '@/app/provaider'
 
 export type FilterStateType = 'all' | 'active' | 'closed'
 
 export const Todolists = () => {
-  const [todolists, setTodolists] = useState<TodolistType[]>(initialTodolists)
-  const [tasks, setTasks] = useState<TaskType>(initialTask)
+  const { todoLists } = useContext(TodolistContext)
 
   return (
     <div className={css.container}>
-      <AddTodolist setTasks={setTasks} setTodolists={setTodolists} />
-      {todolists.map((todolist) => {
-        return (
-          <Todolist
-            key={todolist.id}
-            todolistid={todolist.id}
-            title={todolist.title}
-            tasks={tasks[todolist.id]}
-            setTask={setTasks}
-            setTodolists={setTodolists}
-          />
-        )
+      <AddTodolist />
+      {todoLists.map((todolist) => {
+        return <Todolist key={todolist.id} todolistid={todolist.id} title={todolist.title} />
       })}
     </div>
   )
