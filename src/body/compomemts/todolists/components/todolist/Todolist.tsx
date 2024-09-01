@@ -14,19 +14,10 @@ interface Props {
 }
 
 export const Todolist = ({ title, todolistid }: Props) => {
-  const { setTodolists, tasksObj } = useContext(TodolistContext)
+  const {tasksObj, onSavetitleTdl} = useContext(TodolistContext)
   const tasks = tasksObj[todolistid]
 
-  function onSavetitleTdl(value: string, onSuccsesCallback: () => void) {
-    setTodolists((prevState) => {
-      const newArr = prevState.map((element) =>
-        element.id === todolistid ? { ...element, title: value } : element
-      )
 
-      return newArr
-    })
-    onSuccsesCallback()
-  }
 
   const [filterState, setFilterState] = useState<FilterStateType>('all')
   let filterTask: Task[] = []
@@ -41,7 +32,7 @@ export const Todolist = ({ title, todolistid }: Props) => {
   return (
     <div>
       {title}
-      <ChangeTitle title={title} saveTitle={onSavetitleTdl} />
+      <ChangeTitle title={title} saveTitle={(value, callback)=>onSavetitleTdl(todolistid, value, callback)} />
       <DeleteTdl todolistid={todolistid} />
       <AddTask todolistid={todolistid} />
       <TaskList tasks={tasks} filtredTask={filterTask} todolistid={todolistid} />

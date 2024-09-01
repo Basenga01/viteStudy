@@ -12,15 +12,6 @@ export function ChangeTitle({ title, saveTitle, disabled}: PropsType) {
   const [titleIsVisible, setTitleIsVisible] = useState<boolean>(true)
   const [value, setValue] = useState<string>(title)
 
-  // function onSavetitle() {
-  //     setTodolists(prevState => {
-  //         const newArr = prevState.map((element) => element.id === todolistid ? {...element, title: value} : element)
-  //
-  //         return newArr
-  //     })
-  //     setTitleIsVisible(true)
-  // }
-
   function onCloseInput() {
     setTitleIsVisible(true)
   }

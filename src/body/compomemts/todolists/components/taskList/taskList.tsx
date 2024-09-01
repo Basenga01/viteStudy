@@ -1,6 +1,6 @@
 import style from '../todolist/style.module.css'
 
-import { ChangeEvent, useContext } from 'react'
+import { useContext } from 'react'
 
 import { ChangeTitle } from '../changeTitle/ChangeTitle.tsx'
 import { BasedCheckbox } from '@/shered'
@@ -15,37 +15,9 @@ interface PropsType {
 }
 
 export function TaskList({ filtredTask, todolistid }: PropsType) {
-  const { setTaskObj: setTask } = useContext(TodolistContext)
+  const {onSaveTitleTask, deleteTask, isComplitedTask} = useContext(TodolistContext)
 
-  function onSaveTitleTask(id: string, value: string, onSuccsesCallback: () => void) {
-    setTask((prevState) => {
-      const tasks = prevState[todolistid]
-      const newTasks = tasks.map((item) => (item.id === id ? { ...item, task: value } : item))
-      return { ...prevState, ...{ [todolistid]: newTasks } }
-    })
-    onSuccsesCallback()
-  }
 
-  function deleteTask(id: string) {
-    setTask((prevState) => {
-      const tagretTodolist = prevState[todolistid]
-      const filtredTask = tagretTodolist.filter((el) => el.id !== id)
-      return { ...prevState, ...{ [todolistid]: filtredTask } }
-    })
-  }
-
-  function checkboxCheck(el: ChangeEvent<HTMLInputElement>, id: string) {
-    setTask((prevState) => {
-      const tasks = prevState[todolistid]
-      const resultTasks = tasks.map((task) =>
-        task.id === id ? { ...task, isDone: el.target.checked } : task
-      )
-      const resObj = {
-        [todolistid]: resultTasks,
-      }
-      return { ...prevState, ...resObj }
-    })
-  }
 
   return (
     <ul>
@@ -56,15 +28,15 @@ export function TaskList({ filtredTask, todolistid }: PropsType) {
           <div className={style.container}>
             <BasedCheckbox
               checked={task.isDone}
-              onChange={(event) => checkboxCheck(event, task.id)}
+              onChange={(event) => isComplitedTask(event.target.checked, task.id, todolistid)}
             />
             {task.task}
             <ChangeTitle
               disabled={task.isDone}
               title={task.task}
-              saveTitle={(value, callback) => onSaveTitleTask(task.id, value, callback)}
+              saveTitle={(value, succesesCallback) => onSaveTitleTask(todolistid, task.id, value, succesesCallback)}
             />
-            <DeleteTask disabled={task.isDone} onClick={() => deleteTask(task.id)}></DeleteTask>
+            <DeleteTask disabled={task.isDone} onClick={() => deleteTask(task.id, todolistid)}></DeleteTask>
           </div>
         </li>
       ))}
