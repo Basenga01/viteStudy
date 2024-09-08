@@ -14,6 +14,7 @@ interface Props {
 }
 
 export const Todolist = ({ title, todolistid }: Props) => {
+
   const {tasksObj, onSavetitleTdl} = useContext(TodolistContext)
   const tasks = tasksObj[todolistid]
 
@@ -37,6 +38,7 @@ export const Todolist = ({ title, todolistid }: Props) => {
       <AddTask todolistid={todolistid} />
       <TaskList tasks={tasks} filtredTask={filterTask} todolistid={todolistid} />
       <FilterBlock setFilterState={setFilterState} filterState={filterState} />
+
     </div>
   )
 }
