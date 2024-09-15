@@ -5,9 +5,13 @@ import { Body } from './body/body.tsx'
 import { Login } from "@/feature/feature.tsx";
 import { AufContext, AufProvider } from "@/app/provaider/aufProvaider";
 import { useContext, useEffect } from "react";
+import { Provider, useSelector } from "react-redux";
+import { RootState, rootStore } from "@/app/rootStore";
 
 
 export const App = () => {
+  const {name} = useSelector ((state: RootState) => state.userStore)
+  console.log(name)
   const {isAuthenticated, authMe} = useContext(AufContext)
 useEffect(()=>{
   if(!isAuthenticated){
@@ -33,7 +37,9 @@ useEffect(()=>{
 export const WrapperApp=()=>{
   return(
   <AufProvider>
-    <App></App>
+    <Provider store={rootStore}>
+      <App></App>
+    </Provider>
   </AufProvider>
 
   )}
