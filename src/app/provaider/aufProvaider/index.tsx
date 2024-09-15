@@ -1,5 +1,5 @@
 import { createContext, ReactNode, useState } from 'react'
-import { BASE_URL } from '@/shered'
+import { ACCESS_TOKEN, BASE_URL } from "@/shered";
 
 interface AuthContextType {
   isAuthenticated: boolean
@@ -13,7 +13,6 @@ export const AufContext = createContext<AuthContextType>({} as AuthContextType)
 interface PropsType {
   children: ReactNode
 }
-const ACCESS_TOKEN='access_token'
 export const AufProvider = ({ children }: PropsType) => {
   const [isAuthenticated, setIsAuthenticated] = useState<boolean>(false)
 

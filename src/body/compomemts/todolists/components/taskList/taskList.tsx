@@ -23,7 +23,7 @@ export function TaskList({ filtredTask, todolistid }: PropsType) {
     <ul>
       {/*<input type={"checkbox"} checked={tasks[0].isDone}/>{tasks[0].task}*/}
 
-      {filtredTask.map((task) => (
+      {filtredTask?.map((task) => (
         <li key={task.id} className={task.isDone ? style.isDone : undefined}>
           <div className={style.container}>
             <BasedCheckbox

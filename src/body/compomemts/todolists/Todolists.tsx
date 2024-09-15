@@ -1,4 +1,4 @@
-import { useContext } from 'react'
+import { useContext, useEffect } from "react";
 import { AddTodolist, Todolist } from '@/body/compomemts/todolists/components'
 import css from './Todolists.module.css'
 import { TodolistContext } from '@/app/provaider'
@@ -6,7 +6,11 @@ import { TodolistContext } from '@/app/provaider'
 export type FilterStateType = 'all' | 'active' | 'closed'
 
 export const Todolists = () => {
-  const { todoLists } = useContext(TodolistContext)
+  const { todoLists, getTdl, getTask } = useContext(TodolistContext)
+  useEffect(()=>{
+    getTdl()
+    getTask()
+  }, [])
 
   return (
     <div className={css.container}>
