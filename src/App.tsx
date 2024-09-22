@@ -2,24 +2,24 @@ import { Header } from './Header.tsx'
 import css from './App.module.css'
 import clsx from 'clsx'
 import { Body } from './body/body.tsx'
-import { Login } from "@/feature/feature.tsx";
-import { AufContext, AufProvider } from "@/app/provaider/aufProvaider";
-import { useContext, useEffect } from "react";
-import { Provider, useSelector } from "react-redux";
-import { RootState, rootStore } from "@/app/rootStore";
-
+import { Login } from '@/feature/feature.tsx'
+import { AufProvider } from '@/app/provaider/aufProvaider'
+import { useEffect } from 'react'
+import { Provider, useSelector } from 'react-redux'
+import { RootState, rootStore, useAppDispatch } from '@/app/rootStore'
+import { authMe } from '@/entity/user/api/authMe.ts'
 
 export const App = () => {
-  const {name} = useSelector ((state: RootState) => state.userStore)
+  const { name, isAuthenticated } = useSelector((state: RootState) => state.userStore)
+  const dispatch = useAppDispatch()
   console.log(name)
-  const {isAuthenticated, authMe} = useContext(AufContext)
-useEffect(()=>{
-  if(!isAuthenticated){
-    authMe()
-  }
-},[])
-  if(!isAuthenticated){
-    return <Login/>
+  useEffect(() => {
+    if (!isAuthenticated) {
+      dispatch(authMe())
+    }
+  }, [])
+  if (!isAuthenticated) {
+    return <Login />
   }
 
   return (
@@ -34,12 +34,12 @@ useEffect(()=>{
   )
 }
 
-export const WrapperApp=()=>{
-  return(
-  <AufProvider>
-    <Provider store={rootStore}>
-      <App></App>
-    </Provider>
-  </AufProvider>
-
-  )}
+export const WrapperApp = () => {
+  return (
+    <AufProvider>
+      <Provider store={rootStore}>
+        <App></App>
+      </Provider>
+    </AufProvider>
+  )
+}

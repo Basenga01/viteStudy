@@ -1,12 +1,15 @@
-import { useContext } from "react";
-import { AufContext } from "@/app/provaider/aufProvaider";
-import { BasedButton } from "@/shered";
+import { BasedButton } from '@/shered'
+import { useAppDispatch } from '@/app/rootStore'
+import { logOut } from '@/entity/user/store'
 
 export const Header = () => {
-  const {logOut} = useContext(AufContext)
+  const dispatch = useAppDispatch()
+  const onClick = () => {
+    dispatch(logOut())
+  }
   return (
     <div className={'adda'}>
-      <BasedButton onClick={logOut}>Выход</BasedButton>
+      <BasedButton onClick={onClick}>Выход</BasedButton>
     </div>
   )
 }

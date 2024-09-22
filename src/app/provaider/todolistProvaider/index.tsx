@@ -51,7 +51,6 @@ export const TodolistProvider = ({ children }: PropsType) => {
     })
     onSuccsesCallback()
   }
-
   function onSavetitleTdl(todolistid: string, value: string, onSuccsesCallback: () => void) {
     setTodolists((prevState) => {
       const newArr = prevState.map((element) =>
