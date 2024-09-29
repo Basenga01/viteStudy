@@ -1,16 +1,25 @@
-import { useContext, useEffect } from "react";
+import { useEffect } from 'react'
 import { AddTodolist, Todolist } from '@/body/compomemts/todolists/components'
 import css from './Todolists.module.css'
-import { TodolistContext } from '@/app/provaider'
+import { RootState, useAppDispatch } from '@/app/rootStore'
+import { getMyTdl } from '@/entity/todolist'
+import { useSelector } from 'react-redux'
+import { getMyTask } from "@/entity/task";
 
 export type FilterStateType = 'all' | 'active' | 'closed'
 
 export const Todolists = () => {
-  const { todoLists, getTdl, getTask } = useContext(TodolistContext)
+  const {todoLists}=useSelector((state: RootState) => state.todolistStore)
+  const dispatch = useAppDispatch()
   useEffect(()=>{
-    getTdl()
-    getTask()
+    dispatch(getMyTdl())
   }, [])
+
+  const {tasks} = useSelector ((state: RootState)=> state.taskStore)
+  useEffect(() => {
+    dispatch((getMyTask()))
+  }, []);
+  console.log(tasks)
 
   return (
     <div className={css.container}>

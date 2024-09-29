@@ -1,5 +1,5 @@
 import { createContext, Dispatch, ReactNode, SetStateAction, useState } from 'react'
-import { Task, TaskResponse, TaskType, TodolistType } from "@/types";
+import { Task, TaskResponse, TaskType, TodolistType } from '@/types'
 import { ACCESS_TOKEN, BASE_URL } from '@/shered'
 
 interface PropsContext {
@@ -51,6 +51,7 @@ export const TodolistProvider = ({ children }: PropsType) => {
     })
     onSuccsesCallback()
   }
+
   function onSavetitleTdl(todolistid: string, value: string, onSuccsesCallback: () => void) {
     setTodolists((prevState) => {
       const newArr = prevState.map((element) =>
@@ -123,28 +124,27 @@ export const TodolistProvider = ({ children }: PropsType) => {
 
         const convertTask = (tasks: TaskResponse[]): Task[] => {
           return tasks.map(
-            (task): Task =>({
-            id: task.id,
-            task: task.title,
-            isDone: task.is_completed,
-            todolistId: task.todolist_id,
-            createdAt: task.created_at,
-            description: task.description,
-            dueDate: task.due_date
-          }))
+            (task): Task => ({
+              id: task.id,
+              task: task.title,
+              isDone: task.is_completed,
+              todolistId: task.todolist_id,
+              createdAt: task.created_at,
+              description: task.description,
+              dueDate: task.due_date,
+            })
+          )
         }
 
-        const taskObj: TaskType ={}
+        const taskObj: TaskType = {}
 
-         convertTask(data).forEach((el)=>{
-           if (taskObj[el.todolistId]){
-             taskObj[el.todolistId] = [...taskObj[el.todolistId], el]
-           }else{taskObj[el.todolistId] = [el]}
-
+        convertTask(data).forEach((el) => {
+          if (taskObj[el.todolistId]) {
+            taskObj[el.todolistId] = [...taskObj[el.todolistId], el]
+          } else {
+            taskObj[el.todolistId] = [el]
+          }
         })
-        console.log(taskObj)
-        console.log(data, 'data')
-        console.log('convertData' ,convertTask(data))
         setTaskObj(taskObj)
       } else {
         console.error('error')
@@ -210,7 +210,7 @@ export const TodolistProvider = ({ children }: PropsType) => {
       onDeleteTdl,
       addTask,
       getTdl,
-      getTask
+      getTask,
     }
   }
 

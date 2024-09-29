@@ -9,6 +9,7 @@ const userSlice = createSlice({
     name: 'Borya',
     isAuthenticated: false,
     isLoading: false,
+    isInitialized: false
   },
   reducers: {
     logOut(state) {
@@ -21,13 +22,14 @@ const userSlice = createSlice({
       .addCase(signIn.pending, (state) => {
         state.isLoading = true
       })
-      .addCase(signIn.fulfilled, () => {})
       .addCase(authMe.fulfilled, (state) => {
         state.isAuthenticated = true
         state.isLoading = false
+        state.isInitialized = true
       })
       .addCase(authMe.rejected, (state) => {
         state.isLoading = false
+        state.isInitialized = true
       })
       .addCase(signIn.rejected, (state) => {
         state.isLoading = false
