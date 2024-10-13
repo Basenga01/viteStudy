@@ -9,9 +9,8 @@ import { RootState, rootStore, useAppDispatch } from '@/app/rootStore'
 import { authMe } from '@/entity/user/api/authMe.ts'
 
 export const App = () => {
-  const { name, isAuthenticated, isInitialized } = useSelector((state: RootState) => state.userStore)
+  const { isAuthenticated, isInitialized } = useSelector((state: RootState) => state.userStore)
   const dispatch = useAppDispatch()
-  console.log(name)
   useEffect(() => {
     if (!isAuthenticated) {
       dispatch(authMe())

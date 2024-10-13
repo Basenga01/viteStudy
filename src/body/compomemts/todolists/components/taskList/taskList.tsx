@@ -14,7 +14,6 @@ interface PropsType {
 
 export function TaskList({ filtredTask, todolistid }: PropsType) {
   const {onSaveTitleTask, deleteTask, isComplitedTask} = useContext(TodolistContext)
-  console.log(filtredTask)
   return (
     <ul>
 

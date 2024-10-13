@@ -15,11 +15,11 @@ export const Todolists = () => {
     dispatch(getMyTdl())
   }, [])
 
-  const {tasks} = useSelector ((state: RootState)=> state.taskStore)
+  const {} = useSelector ((state: RootState)=> state.taskStore)
   useEffect(() => {
     dispatch((getMyTask()))
   }, []);
-  console.log(tasks)
+
 
   return (
     <div className={css.container}>

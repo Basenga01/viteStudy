@@ -1,13 +1,13 @@
 import { BasedButton, BasedModalWindow, useModal } from '@/shered'
-import { useContext } from 'react'
-import { TodolistContext } from '@/app/provaider'
+import { useAppDispatch } from '@/app/rootStore'
+import { deleteTdl } from '@/entity/todolist/api/deleteTdl.ts'
 
 interface PropsType {
   todolistid: string
 }
 
 export const DeleteTdl = ({ todolistid }: PropsType) => {
-  const { onDeleteTdl } = useContext(TodolistContext)
+  const dispatch = useAppDispatch()
   const { isOpen, openModal, closeModal } = useModal()
 
   return (
@@ -17,7 +17,7 @@ export const DeleteTdl = ({ todolistid }: PropsType) => {
       <BasedModalWindow
         isOpen={isOpen}
         onCancel={closeModal}
-        onOk={() => onDeleteTdl(todolistid, closeModal)}
+        onOk={() => dispatch(deleteTdl({ todolistId: todolistid, successesCallback: closeModal }))}
       >
         <div>Are you shure about that?</div>
       </BasedModalWindow>

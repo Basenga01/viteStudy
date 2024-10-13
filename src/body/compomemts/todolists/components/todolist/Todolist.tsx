@@ -4,11 +4,11 @@ import { TaskList } from '../taskList/taskList.tsx'
 import { AddTask } from '../addTask/addTask.tsx'
 import { ChangeTitle } from '../changeTitle/ChangeTitle.tsx'
 import { DeleteTdl } from '../deleteTdl/deleteTdl.tsx'
-import { useContext, useEffect, useState } from 'react'
-import { TodolistContext } from '@/app/provaider'
+import { useEffect, useState } from 'react'
 import { useSelector } from 'react-redux'
 import { RootState, useAppDispatch } from '@/app/rootStore'
 import { getMyTask, TaskDTO } from '@/entity/task'
+import { changeTdl } from '@/entity/todolist/api/changeTdl.ts'
 
 interface Props {
   title: string
@@ -16,8 +16,7 @@ interface Props {
 }
 
 export const Todolist = ({ title, todolistid }: Props) => {
-  const { onSavetitleTdl } = useContext(TodolistContext)
-
+  
   const { taskObj: tasksObj } = useSelector((state: RootState) => state.taskStore)
   const dispatch = useAppDispatch()
   useEffect(() => {
@@ -35,15 +34,13 @@ export const Todolist = ({ title, todolistid }: Props) => {
   } else if (filterState === 'closed') {
     filterTask = tasks.filter((task) => task.isCompleted)
   }
-  console.log(tasks)
-  console.log(filterTask)
 
   return (
     <div>
       {title}
       <ChangeTitle
         title={title}
-        saveTitle={(value, callback) => onSavetitleTdl(todolistid, value, callback)}
+        saveTitle={(value, callback) => dispatch(changeTdl({todolistId: todolistid, title: value, successesCallback: callback})) }
       />
       <DeleteTdl todolistid={todolistid} />
       <AddTask todolistid={todolistid} />

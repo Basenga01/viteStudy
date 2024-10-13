@@ -13,3 +13,12 @@ export interface TodolistDTO {
   createdAt: string
   userId: string
 }
+
+export interface TdlRequest{
+  title: string
+  description: string
+}
+
+export interface DeleteTdlParams{
+  todolistId: string
+}
