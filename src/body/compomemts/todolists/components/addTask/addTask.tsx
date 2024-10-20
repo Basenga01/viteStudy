@@ -1,14 +1,15 @@
-import { ChangeEvent, useContext, useState } from 'react'
+import { ChangeEvent, useState } from 'react'
 import css from './addTask.module.css'
 import { BasedButton, BasedInput } from '@/shered'
-import { TodolistContext } from '@/app/provaider'
+import { useAppDispatch } from '@/app/rootStore'
+import { addTask } from '@/entity/task'
 
 interface PropsType {
   todolistid: string
 }
 
 export function AddTask({ todolistid }: PropsType) {
-  const { addTask } = useContext(TodolistContext)
+  const dispatch = useAppDispatch()
   const [value, setValue] = useState<string>('')
   const [error, setError] = useState<boolean>(false)
 
@@ -20,11 +21,19 @@ export function AddTask({ todolistid }: PropsType) {
   }
 
   const onClickAddTask = () => {
-    addTask(
-      value,
-      todolistid,
-      () => setValue(''),
-      () => setError(true)
+    dispatch(
+      addTask(
+        {
+          value,
+          todolistid,
+          successCallback:()=> setValue(''),
+          errorCallback:()=> setError(true)
+        }
+        // value,
+        // todolistid,
+        // () => setValue(''),
+        // () => setError(true)
+      )
     )
   }
 

@@ -17,3 +17,7 @@ export interface TaskDTO {
   title: string
   dueDate: string
 }
+export interface TaskUpdateRequest extends Partial<Pick<TaskDTO, 'isCompleted'|'title'>>{
+
+}
+// type TaskUpdate = Pick<TaskDTO, 'isCompleted'|'title'>
